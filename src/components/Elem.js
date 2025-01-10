@@ -4,7 +4,7 @@ class Elem extends Component {
     state = {
         id: '',
         todo: '',
-        date: '',
+        d_day: '',
         isComplete: false,
         isSetting: false,
     }
@@ -13,7 +13,7 @@ class Elem extends Component {
         super(props);
         this.state.id = props.id;
         this.state.todo = props.todo;
-        this.state.date = props.date;
+        this.state.d_day = props.d_day;
     }
 
     checkboxOnChange(e) {
@@ -34,7 +34,7 @@ class Elem extends Component {
                 <span className="isComplete"><input type="checkbox" className="checkbox" onChange={this.checkboxOnChange.bind(this)}></input></span>
                 <span className="id">{this.state.id}</span>
                 <span className="todo">{this.state.todo}</span>
-                <span className="date">{new Date(this.state.date).getFullYear() + '.' + new Date(this.state.date).getMonth() + '.' + new Date(this.state.date).getDay()}</span>
+                <span className="d_day">{this.state.d_day}</span>
                 <span className="setting"><button onClick={this.settingOnClick.bind(this)}>...</button></span>
             </li>
         )

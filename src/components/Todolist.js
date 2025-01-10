@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import Elem from './Elem';
 
 class Todolist extends Component {
-    state = {
-        list: [{
-            id: 1,
-            todo: 'first',
-            date: Date.now(),
-        }],
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: []
+        };
     }
 
     handleAddBtn() {
@@ -20,19 +19,31 @@ class Todolist extends Component {
         this.setState({ list: newList });
     };
 
+    componentDidMount() {
+        console.log("component Did Mount");
+        let newList = [];
+
+        this.setState({ list: newList });
+        fetch('todolist.json')
+            .then(result => result.json())
+            .then(json => this.setState({ list: json.list }));
+    }
 
     render() {
         return (
             <div className="todolist">
                 <ul>
                     {
+                        console.log(this.state.list)
+                    }
+                    {
                         this.state.list.map((item, index) => (
                             <Elem
                                 key={index}
                                 id={item.id}
                                 todo={item.todo}
-                                date={item.date}
-                                onClick={id => {}}
+                                d_day={item.d_day}
+                                onClick={id => { }}
                             />
                         ))
                     }
